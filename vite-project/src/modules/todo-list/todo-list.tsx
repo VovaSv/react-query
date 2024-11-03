@@ -1,11 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { todoListApi } from "../../shared/api/todo-list/api";
 
-type Todo = {
-  id: string;
-  text: string;
-  done: boolean;
-};
-
+/*
 export const getTodos = async () => {
   return new Promise<Todo[]>((resole) => {
     setTimeout(() => {
@@ -16,18 +12,19 @@ export const getTodos = async () => {
     }, 1000);
   });
 };
+*/
 
 export function TodoList() {
   const { data, error, isPending } = useQuery({
     queryKey: ["todos", "list"],
-    queryFn: getTodos,
+    queryFn: todoListApi.getTodoList,
   });
 
   if (isPending) return <>Loading...</>;
   if (error) return <>Error</>;
   return (
     <>
-      TodoList
+      <h1 className="text-3xl font-bold underline">Todo List</h1>
       {data.map((todo) => (
         <div key={todo.id}>{todo.text}</div>
       ))}
