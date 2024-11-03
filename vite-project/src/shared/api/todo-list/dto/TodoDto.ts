@@ -4,3 +4,13 @@ export type TodoDto = {
   text: string;
   done: boolean;
 };
+
+export type PaginatedResult<T> = {
+  data: T[];
+  first: number;
+  itmes: number;
+  last: number;
+  next: number | null;
+  pages: number;
+  prev: number | null;
+};
